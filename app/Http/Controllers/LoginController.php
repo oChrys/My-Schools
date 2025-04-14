@@ -16,16 +16,12 @@ class LoginController extends Controller
     }
     public function store(Request $request){
         $request->validate([
-            'CPF' => 'required|CPF',
+            'cpf' => 'required|cpf',
             'senha' => 'required'
-        ],[
-            'CPF.required' => 'O CPF é obrigatório.',
-            'CPF.CPF' => 'CPF inválido.'
         ]);
-
-        return dd('Sucesso');
-
+        dd($request);
     }
+    
     public function destroy(){
         return dd('Sair');
     }

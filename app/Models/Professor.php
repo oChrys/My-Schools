@@ -2,18 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Professor extends Model
 {
-    use HasFactory;
     protected $fillable = [
-        'name',
-        'CPF',
-        'nascimento',
-        'escola',
-        'senha'
+        'usuario_id',
+        'escola_id',
     ];
-    
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'usuario_id');
+    }
+
+    public function escola()
+    {
+        return $this->belongsTo(Escola::class);
+    }
+
+    public function alunos()
+    {
+        return $this->hasMany(Aluno::class);
+    }
 }

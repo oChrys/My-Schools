@@ -1,18 +1,22 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SchoolsController;
+use App\Http\Controllers\UsersController;
 use App\Models\Aluno;
 use App\Models\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [LoginController::class, 'home'])->name('home');
+Route::post('/teste', [UsersController::class, 'store']);
+//Route::post('/login', [AuthController::class, 'store']);
+
 
 Route::controller(LoginController::class)->group(function(){
-    Route::get('/login', 'index')->name('login_index');
-    Route::post('/login', 'store')->name('login_store');
-    Route::get('/logout', 'destroy')->name('login_destroy');
+    //Route::get('/login', 'index')->name('login_index');
+    //Route::post('/login', 'store')->name('login_store');
+    //Route::get('/logout', 'destroy')->name('login_destroy');
 
 });
 
@@ -32,18 +36,6 @@ Route::prefix('schools')->group(function(){
     Route::get('/', [SchoolsController::class, 'schools'])->name('escolas');
     Route::get('/register', [SchoolsController::class, 'create_school'])->name('registro_escola');
     Route::post('/', [SchoolsController::class, 'schools_store'])->name('escolas_store');
-
-});
-Route::get('/cpf-exists', function(Request $request){
-    $CPF = $request->input('CPF');
-
-    $existsTeacher = Professor::where('CPF', $CPF)->exists();
-    $existsStudent = Aluno::where('CPF', $CPF)->exists();
-
-    return response()->json([
-        'professor' =>$existsTeacher,
-        'aluno' =>$existsStudent,
-    ]);
 
 });
 

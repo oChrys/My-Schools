@@ -16,7 +16,7 @@
                 <br>
                 <div class="form-group">
                     <label for="CPF">CPF:</label>
-                    <input type="number" class="form-control" name="CPF" placeholder="Digite seu cpf" req>
+                    <input type="number" class="form-control" name="CPF" placeholder="Digite seu cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" req>
                     @error('CPF')
                     <div class="text-danger">
                         {{ $message }}

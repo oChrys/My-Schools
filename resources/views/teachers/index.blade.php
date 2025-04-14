@@ -29,7 +29,7 @@
         <tr>
             <th>{{ $teacher->id }}</th>
             <td>{{ $teacher->name }}</td>
-            <td>{{ $teacher->CPF }}</td>
+            <td>{{ $teacher->cpf }}</td>
             <td>{{ $teacher->nascimento }}</td>
             <td>{{ $teacher->escola }}</td>
         </tr>

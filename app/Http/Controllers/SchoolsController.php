@@ -19,7 +19,6 @@ class SchoolsController extends Controller
     public function create_school(){
         return view('schools.register_school');
     }
-
     public function schools_store(Request $request){
         Escola::create($request->all());
         return redirect()->route('escolas');

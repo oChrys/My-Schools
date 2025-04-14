@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Laravel\Prompts\Table;
 
 return new class extends Migration
 {
@@ -12,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('alunos', function (Blueprint $table) {
-            $table->id('usuario_id')->primary()->references('id')->on('users');
-            $table->string('professor', 190);
-            $table->foreign('professor')->references('professor_id')->on('professors');
+        Schema::create('users', function (Blueprint $table) {
+            $table->id()->primary();
+            $table->string('name', 190);
+            $table->char('cpf', 11)->unique();
+            $table->date('nascimento');
+            $table->string('senha', 190);
+            $table->enum('tipo_usuario', ['aluno', 'professor']);
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alunos');
+        Schema::dropIfExists('users');
     }
 };
