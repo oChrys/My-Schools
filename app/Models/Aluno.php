@@ -8,11 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Aluno extends Model
 {
     use HasFactory;
+
+    protected $table = 'alunos';
+
     protected $fillable = [
         'name',
-        'CPF',
+        'cpf',
         'nascimento',
-        'professor',
-        'senha'
+        'id_professor',
     ];
+
+    public function professor()
+    {
+        return $this->belongsTo(Professor::class, 'id_professor');
+    }
 }

@@ -13,13 +13,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('alunos', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->string('name', 190);
-            $table->char('CPF', 11)->unique();
+            $table->id();
+            $table->string('name',190);
+            $table->string('cpf', 190)->unique();
             $table->date('nascimento');
-            $table->string('professor', 190);
-            $table->foreign('professor')->references('name')->on('professors');
-            $table->string('senha', 190);
+            $table->unsignedBigInteger('id_professor');
+            $table->foreign('id_professor')->references('id')->on('professors')->onDelete('cascade');
             $table->timestamps();
         });
     }

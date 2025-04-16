@@ -9,13 +9,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('professors', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->string('name', 190);
-            $table->char('CPF', 11)->unique();
-            $table->date('nascimento');
-            $table->string('escola', 190);
-            $table->foreign('escola')->references('name')->on('escola');
-            $table->string('senha', 190);
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('escola_id', 190);
+            $table->foreign('escola_id')->contrained('escolas')->onDelete('cascade');
             $table->timestamps();
         });
     }
